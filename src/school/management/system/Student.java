@@ -12,16 +12,17 @@ public class Student {
         this.id = id;
         this.name = name;
         this.grade = grade;
-        this.feesPaid = feesPaid=0;
-        this.feesTotal = feesTotal=3000;
+        this.feesPaid = 0;
+        this.feesTotal = 3000;
     }
 
     public void setGrade(int grade) {
         this.grade=grade;
     }
 
-    public void updateFeesPaid(int fees) {
+    public void payFees(int fees) {
         feesPaid += fees;
+        School.updateTotalMoneyEarned(feesPaid);
     }
 
     public int getId() {
@@ -42,5 +43,15 @@ public class Student {
 
     public int getFeesTotal() {
         return feesTotal;
+    }
+
+    public int getRemainingFees(){
+        return feesTotal-feesPaid;
+    }
+
+    @Override
+    public String toString() {
+        return "Student's name: "+name+
+                " Total fees paid so far $"+ feesPaid;
     }
 }
